@@ -39,9 +39,21 @@ def main():
     allContoursWithData = []                # declare empty lists,
     validContoursWithData = []              # we will fill these shortly
 
-    npaClassifications = np.loadtxt("classifications.txt", np.float32)                  # read in training classifications
+    try:
+        npaClassifications = np.loadtxt("classifications.txt", np.float32)                  # read in training classifications
+    except:
+        print "error, unable to open classifications.txt, exiting program\n"
+        os.system("pause")
+        return
+    # end try
 
-    npaFlattenedImages = np.loadtxt("flattened_images.txt", np.float32)                 # read in training images
+    try:
+        npaFlattenedImages = np.loadtxt("flattened_images.txt", np.float32)                 # read in training images
+    except:
+        print "error, unable to open flattened_images.txt, exiting program\n"
+        os.system("pause")
+        return
+    # end try
 
     npaClassifications = npaClassifications.reshape((npaClassifications.size, 1))       # reshape numpy array to 1d, necessary to pass to call to train
 
